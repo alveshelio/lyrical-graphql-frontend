@@ -1,17 +1,31 @@
-# react-webpack-babel
-Simple React Webpack Babel Starter Kit
+# apollo-graphql-react-webpack-boilerplate
+Simple Apollo Graphql React Webpack Babel Starter Kit
 
-Tired of complicated starters with 200MB of dependencies which are hard to understand and modify?
+This project is a fork of https://github.com/alicoding/react-webpack-babel
 
-Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
+I've used it as a starting point making sure the Webpack and Babel were taking care of and I've made some additions to it.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+This boilerplate uses [Apollo](https://www.apollodata.com/), [GraphQL](http://graphql.org/), [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
+
+### What is it intended for?
+If you want to create a React front-end project that needs to work with a GraphQL Backend, this is it.
+
+If you also need the back-end with schemas and mutations to test everything, you can use this boilerplate: https://github.com/alveshelio/apollo-graphql-express-boilerplate
+
+If you change the port of your front-end application, make sure you change the port in the backend application too.
+
+In the server we have `graphQLServer.use('*', cors({ origin: 'http://localhost:3001' }));`, we are allowing connections from http://localhost:3001, if your port is different, you need to change this line in the backend application.
 
 ### What's in it?
 
-* Simple src/index.jsx and src/index.css (local module css).
+* Simple src/index.js and src/index.css (local module css).
 * Webpack configuration for development (with hot reloading) and production (with minification).
 * CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
 * Both js(x) and css hot loaded during development.
 * [Webpack Dashboard Plugin](https://github.com/FormidableLabs/webpack-dashboard) on dev server.
+* Once component that is fetching data from the GraphQL Server
 
 ### To run
 
@@ -19,7 +33,7 @@ Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http:
 * Fork and clone the project:
 
 ```
-git clone https://github.com/alicoding/react-webpack-babel.git
+https://github.com/alveshelio/apollo-graphql-react-webpack-boilerplate
 ```
 
 * Then install the dependencies:
@@ -40,7 +54,7 @@ npm start
 npm run dev
 ```
 
-Open the web browser to `http://localhost:8888/`
+Open the web browser to `http://localhost:3001/`
 
 ### To test
 To run unit tests:
