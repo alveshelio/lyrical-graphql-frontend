@@ -4,12 +4,16 @@ import {
 	ApolloProvider,
 	createNetworkInterface,
 } from 'react-apollo';
+import {
+	BrowserRouter as Router,
+	Route,
+} from 'react-router-dom';
 
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
-// import { mockNetworkInterfaceWithSchema } from 'apollo-test-utils';
 
 import typeDefs from './data/schema';
 import SongList from './components/SongList';
+import CreateSong from './components/CreateSong';
 
 const schema = makeExecutableSchema({ typeDefs });
 addMockFunctionsToSchema({ schema });
@@ -28,9 +32,12 @@ export default class App extends React.Component {
   render() {
     return (
 			<ApolloProvider client={client}>
-				<div>
-					<SongList />
-				</div>
+				<Router>
+					<div>
+						<Route exact path='/' component={SongList} />
+						<Route path='/songs/new' component={CreateSong } />
+					</div>
+				</Router>
 			</ApolloProvider>
     )
   }

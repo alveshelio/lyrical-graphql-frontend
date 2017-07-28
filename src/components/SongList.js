@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {
-	gql,
 	graphql,
 } from 'react-apollo';
+import { Link } from 'react-router-dom';
+
+import songListQuery from '../queries/fetchAllSong';
 
 class SongList extends Component {
 	render() {
@@ -15,20 +17,17 @@ class SongList extends Component {
 			return <p>{error.message}</p>;
 		}
 		return (
-			<ul className='collection'>
-				{songs.map(song => <li className='collection-item' key={song.id}>{song.title}</li>)}
-			</ul>
+			<div>
+				<ul className='collection'>
+					{songs.map(song => <li className='collection-item' key={song.id}>{song.title}</li>)}
+				</ul>
+				<Link className='bt-floating btn-large btn-round red right' to='/songs/new'>
+					<i className='material-icons'>add</i>
+				</Link>
+			</div>
 		);
 	}
 }
 
-const songListQuery = gql `
-	query SongListQuery {
-		songs {
-			id
-			title
-  	}
-	}
-`;
 
 export default graphql(songListQuery)(SongList);
