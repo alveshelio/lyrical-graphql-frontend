@@ -22,7 +22,7 @@ class SongDetails extends Component {
 		if (!song) {
 			return (
 				<div>
-					<p>There's no song that match this id: {this.props.match.params.id}</p>
+					<p>There&#39;s no song that match this id: {this.props.match.params.id}</p>
 					<Link to='/'>Back</Link>
 				</div>
 			)
