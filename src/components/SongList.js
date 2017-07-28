@@ -5,6 +5,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import songListQuery from '../queries/fetchAllSong';
+import deleteSongMutation from '../mutations/deleteSong';
 
 class SongList extends Component {
 	render() {
@@ -29,5 +30,6 @@ class SongList extends Component {
 	}
 }
 
-
-export default graphql(songListQuery)(SongList);
+export default graphql(deleteSongMutation)(
+	(songListQuery)(SongList)
+);
