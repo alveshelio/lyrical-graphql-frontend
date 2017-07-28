@@ -14,6 +14,7 @@ import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import typeDefs from './data/schema';
 import SongList from './components/SongList';
 import CreateSong from './components/CreateSong';
+import SongDetails from './components/SongDetails';
 
 const schema = makeExecutableSchema({ typeDefs });
 addMockFunctionsToSchema({ schema });
@@ -35,7 +36,8 @@ export default class App extends React.Component {
 				<Router>
 					<div>
 						<Route exact path='/' component={SongList} />
-						<Route path='/songs/new' component={CreateSong } />
+						<Route path='/songs/new' component={CreateSong} />
+						<Route path='/songs/:id' component={SongDetails} />
 					</div>
 				</Router>
 			</ApolloProvider>

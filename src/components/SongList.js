@@ -10,7 +10,6 @@ import deleteSongMutation from '../mutations/deleteSong';
 class SongList extends Component {
 	constructor(props) {
 		super(props);
-
 		this.onSongDelete = this.onSongDelete.bind(this);
 	}
 
@@ -41,7 +40,9 @@ class SongList extends Component {
 										className='collection-item'
 										key={id}
 									>
-										{title}
+										<Link to={`/songs/${id}`}>
+											{title}
+										</Link>
 										<i className='material-icons right song-delete' onClick={() => this.onSongDelete(id)}>
 											delete
 										</i>
