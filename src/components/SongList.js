@@ -4,9 +4,24 @@ import {
 } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
-import songListQuery from '../queries/fetchAllSong';
+import songListQuery from '../queries/fetchAllSongs';
+import deleteSongMutation from '../mutations/deleteSong';
 
 class SongList extends Component {
+	constructor(props) {
+		super(props);
+
+		this.onSongDelete = this.onSongDelete.bind(this);
+	}
+
+	onSongDelete(id) {
+		this.props.mutate({
+			variables: {
+				id
+			},
+		}).then(() => this.props.data.refetch());
+	}
+
 	render() {
 		const { loading, error, songs } = this.props.data;
 
@@ -19,7 +34,21 @@ class SongList extends Component {
 		return (
 			<div>
 				<ul className='collection'>
-					{songs.map(song => <li className='collection-item' key={song.id}>{song.title}</li>)}
+					{
+						songs.map(({ id, title }) => {
+								return (
+									<li
+										className='collection-item'
+										key={id}
+									>
+										{title}
+										<i className='material-icons right song-delete' onClick={() => this.onSongDelete(id)}>
+											delete
+										</i>
+									</li>);
+							}
+						)
+					}
 				</ul>
 				<Link className='bt-floating btn-large btn-round red right' to='/songs/new'>
 					<i className='material-icons'>add</i>
@@ -29,5 +58,6 @@ class SongList extends Component {
 	}
 }
 
-
-export default graphql(songListQuery)(SongList);
+export default graphql(deleteSongMutation)(
+	graphql(songListQuery)(SongList)
+);

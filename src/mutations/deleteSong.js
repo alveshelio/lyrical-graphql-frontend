@@ -1,10 +1,9 @@
 import { gql } from 'react-apollo';
 
 const deleteSongMutation = gql`
-	mutation DeleteSong($title: String) {
-		deleteSong(title: $title) {
+	mutation DeleteSong($id:String) {
+		deleteSong(id:$id) {
 			id
-			title
 		}
 	}
 `;
