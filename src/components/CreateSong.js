@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 
 import addSongMutation from '../mutations/createSong';
-import songListQuery from '../queries/fetchAllSong';
+import songListQuery from '../queries/fetchAllSongs';
 
 class CreateSong extends Component {
 	constructor(props) {
