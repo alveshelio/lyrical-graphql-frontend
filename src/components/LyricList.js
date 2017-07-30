@@ -22,7 +22,7 @@ class LyricList extends Component {
 							</div>
 							<div className='lyric-meta'>
 								<span>likes {likes}</span>
-								<i className='material-icons right' onClick={() => this.onLikeLyric(id)}>
+								<i className='material-icons right' onClick={() => this.onLikeLyric(id, likes)}>
 									thumb_up
 								</i>
 							</div>
@@ -33,9 +33,17 @@ class LyricList extends Component {
 		}
 	}
 
-	onLikeLyric(id) {
+	onLikeLyric(id, likes) {
 		this.props.mutate({
 			variables: { id },
+			optimisticResponse: {
+				__typename: 'Mutation',
+				lyricLike: {
+					id,
+					__typename: 'Lyric',
+					likes: likes + 1,
+				},
+			},
 		});
 
 	}
