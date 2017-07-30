@@ -6,8 +6,15 @@ import { Link } from 'react-router-dom';
 
 import LyricCreate from './LyricCreate';
 import fetchSongQuery from '../queries/fetchSong';
+import likeLyricMutation from '../mutations/likeLyric';
 
 class SongDetails extends Component {
+	constructor(props) {
+		super(props);
+
+		this.onLikeLyric = this.onLikeLyric.bind(this);
+	}
+
 	renderLyrics() {
 		const { song } = this.props.data;
 		if (song.lyrics) {
@@ -15,21 +22,36 @@ class SongDetails extends Component {
 				{
 					song.lyrics.map(({ id, likes, content }) => {
 						return (
-						<li className='collection-item lyric' key={id}>
-							<div className='lyric-content'>
-								{content}
-							</div>
-							<div className='lyric-meta'>
-								<span>likes {likes}</span>
-								<i className='material-icons right' onClick={() => this.onSongDelete(id)}>
-									thumb_up
-								</i>
-							</div>
-						</li>
-					)})
+							<li className='collection-item lyric' key={id}>
+								<div className='lyric-content'>
+									{content}
+								</div>
+								<div className='lyric-meta'>
+									<span>likes {likes}</span>
+									<i className='material-icons right' onClick={() => this.onLikeLyric(id)}>
+										thumb_up
+									</i>
+								</div>
+							</li>
+						);
+					})
 				}
-			</ul>)
+			</ul>);
 		}
+	}
+
+	onLikeLyric(id) {
+		const songId = this.props.match.params.id;
+
+		this.props.mutate({
+			variables: {
+				id
+			},
+			refetchQueries: [{
+				query: fetchSongQuery,
+				variables: { id: songId },
+			}],
+		});
 	}
 
 	render() {
@@ -59,5 +81,6 @@ export default graphql(fetchSongQuery, {
 	options: (props) => {
 		return { variables: { id: props.match.params.id } };
 	}
-})(SongDetails);
-
+})(
+	graphql(likeLyricMutation)(SongDetails)
+);
