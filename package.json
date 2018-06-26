@@ -8,7 +8,9 @@
     "start": "webpack-dev-server --progress --profile --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
     "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors",
-    "test": "export NODE_ENV=test && jest"
+    "test": "export NODE_ENV=test && jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -30,7 +32,8 @@
     "react-apollo": "^1.4.8",
     "react-dom": "15.6.1",
     "react-router-dom": "^4.1.2",
-    "sass-loader": "^6.0.2"
+    "sass-loader": "^6.0.2",
+    "snyk": "^1.85.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
@@ -80,5 +83,6 @@
     "moduleDirectories": [
       "node_modules"
     ]
-  }
+  },
+  "snyk": true
 }
