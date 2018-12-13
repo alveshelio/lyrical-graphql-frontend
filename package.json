@@ -24,7 +24,7 @@
     "cors": "^2.8.4",
     "graphql": "^0.10.5",
     "graphql-tools": "^1.1.0",
-    "mongoose": "^4.11.4",
+    "mongoose": "^4.13.17",
     "node-sass": "^4.3.0",
     "react": "15.6.1",
     "react-apollo": "^1.4.8",
